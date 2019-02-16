@@ -66,7 +66,7 @@
 			{
 				echo $news['header'];
 				echo '<a href="index.php?do=edit_form&id='.$news['id'].'"> Редактировать</a> <a href="index.php?do=delete&id='.$news['id'].'">Удалить</a>';
-			echo '<br>';
+				echo '<br>';
 			}
 		}
 		else
