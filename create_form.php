@@ -13,7 +13,7 @@
 	<input type="text" name="author" id="author">
 	<br>
 	<p>Статус</p>
-	<input type="radio" name="status" value=1>Черновик
+	<input type="radio" name="status" value=1 checked>Черновик
 	<br>
    	<input type="radio" name="status" value=2>Опубликован
    	<br>
