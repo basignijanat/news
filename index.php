@@ -38,6 +38,7 @@
 				$new_news = set_news($new_news, $_POST, $_FILES);
 				$new_news->create_date = date(DATE_RFC822);
 				R::store($new_news);
+				echo '<script>location.href="index.php"</script>';
 			}
 			elseif ($_GET['do'] == 'edit_form')
 			{
@@ -51,29 +52,34 @@
 				$edit_news = R::load('news', $_GET['id']);
 				$edit_news = set_news($edit_news, $_POST, $_FILES);				
 				R::store($edit_news);
+				echo '<script>location.href="index.php"</script>';
 			}
 			elseif ($_GET['do'] == 'delete')
 			{
 				$del_news = R::load('news', $_GET['id']);				
         		R::trash($del_news);
-			}
-		}
-		echo '<h1>Все новости</h1>';
-		$all_news = R::find('news');
-		if (R::count('news') > 0)
-		{
-			foreach ($all_news as $news)
-			{
-				echo $news['header'];
-				echo '<a href="index.php?do=edit_form&id='.$news['id'].'"> Редактировать</a> <a href="index.php?do=delete&id='.$news['id'].'">Удалить</a>';
-				echo '<br>';
+        		echo '<script>location.href="index.php"</script>';
 			}
 		}
 		else
 		{
-			echo 'Нет новостей!';
+			echo '<h1>Все новости</h1>';
+			$all_news = R::find('news');
+			if (R::count('news') > 0)
+			{
+				foreach ($all_news as $news)
+				{
+					echo $news['header'];
+					echo '<a href="index.php?do=edit_form&id='.$news['id'].'"> Редактировать</a> <a href="index.php?do=delete&id='.$news['id'].'">Удалить</a>';
+					echo '<br>';
+				}
+			}
+			else
+			{
+				echo 'Нет новостей!';
+			}
+			echo '<p><a href="index.php?do=create_form">Создать</a></p>';
 		}
-		echo '<p><a href="index.php?do=create_form">Создать</a></p>';		
 	?>
 </body>
 </html>
