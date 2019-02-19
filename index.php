@@ -54,6 +54,11 @@
 				R::store($edit_news);
 				echo '<script>location.href="index.php"</script>';
 			}
+			elseif ($_GET['do'] == 'delete_form')
+			{
+				$del_news = R::load('news', $_GET['id']);
+				include 'delete_form.php';
+			}
 			elseif ($_GET['do'] == 'delete')
 			{
 				$del_news = R::load('news', $_GET['id']);				
@@ -70,7 +75,7 @@
 				foreach ($all_news as $news)
 				{
 					echo $news['header'];
-					echo '<a href="index.php?do=edit_form&id='.$news['id'].'"> Редактировать</a> <a href="index.php?do=delete&id='.$news['id'].'">Удалить</a>';
+					echo '<a href="index.php?do=edit_form&id='.$news['id'].'"> Редактировать</a> <a href="index.php?do=delete_form&id='.$news['id'].'">Удалить</a>';
 					echo '<br>';
 				}
 			}
